@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+from story import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('story/', include('story.urls'))
+    path('api/books/', api_views.BookListCreateAPIView.as_view()),
+    path('api/books/<pk>/', api_views.BookRetrieveUpdateDestroyAPIview.as_view()),
 
 ]
