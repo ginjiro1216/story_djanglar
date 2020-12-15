@@ -15,9 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+
+
+from apiv1 import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('story/', include('story.urls'))
+    path('', TemplateView.as_view(template_name='index.html')),
+    path('api/books/', api_views.BookListCreateAPIView.as_view()),
+    path('api/books/<pk>', api_views.BookRetrieveUpdateDestroyAPIView.as_view()),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/', include('apiv1.urls')),
 
 ]
