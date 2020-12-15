@@ -25,7 +25,7 @@ SECRET_KEY = 'bs_w7i=_lgqd-oh^g0m^v1nd2+!8ihy5y28jb@-1w2tg5b5_67'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # myapp
-    'story',
     # 3rd party
     'rest_framework',
+    # myapp
+    'story.apps.StoryConfig',
+    'apiv1.apps.Apiv1Config'
+
 ]
 
 MIDDLEWARE = [

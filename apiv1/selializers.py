@@ -1,13 +1,13 @@
 from rest_framework import serializers
 
-from .models import Book
+from story.models import Book
 
 
 class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        exclude = ['date']
+        fields = ['author', 'title', 'story', 'publisher']
 
 
 

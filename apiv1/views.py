@@ -1,9 +1,20 @@
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
+
 from django.shortcuts import get_object_or_404
 from rest_framework import status, views
 from rest_framework.response import Response
 
-from .models import Book
-from .selializers import BookSerializer
+from story.models import Book
+from apiv1.selializers import BookSerializer
+
+
+class BookViewSet(viewsets.ModelViewSet):
+
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class BookListCreateAPIView(views.APIView):
@@ -20,7 +31,7 @@ class BookListCreateAPIView(views.APIView):
         return Response(serializer.data, status.HTTP_201_CREATED)
 
 
-class BookRetrieveUpdateDestroyAPIview(views.APIView):
+class BookRetrieveUpdateDestroyAPIView(views.APIView):
 
     def get(self, request, pk, *args, **kwargs):
         book = get_object_or_404(Book, pk=pk)
